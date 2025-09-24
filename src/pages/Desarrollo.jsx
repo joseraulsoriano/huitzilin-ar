@@ -7,27 +7,26 @@ import Plano from "../assets/plane.png";
 import Footer from "../components/Footer";
 import React from 'react';
 import Top from "../assets/top.png";
+import { useModelViewer } from "../hooks/useModelViewer";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Desarrollo = () => {
   const handleDragStart = (e) => e.preventDefault();
-     //const [material, setMaterial] = useState("/definit.glb");
-      //const [labelMaterial, setLabelMaterial] = useState("Fibra de Carbono");
-      //const [counter, setCounter] = useState(0);
-      useEffect(() => {
-        const script = document.createElement('script');
-        script.type = 'module';
-        script.src = 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js';
-        document.head.appendChild(script);
-      }, []);
+  const { isLoading, isError, activateAR } = useModelViewer();
+  const [esMovil, setEsMovil] = useState(false);
+
+  useEffect(() => {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const esMovilDetectado = /android|iphone|ipad|ipod|windows phone/i.test(userAgent);
+    setEsMovil(esMovilDetectado);
+  }, []);
     
-      const handleAR = () => {
-        const modelViewer = document.getElementById('modelo');
-        if (modelViewer?.canActivateAR) {
-          modelViewer.activateAR();
-        } else {
-          alert('AR no está disponible en este dispositivo o navegador.');
-        }
-      };
+  const handleAR = () => {
+    const success = activateAR();
+    if (!success) {
+      alert('AR no está disponible en este dispositivo o navegador.');
+    }
+  };
       //const handleChangeMaterial = () => {
         //setCounter(counter + 1)
         //if(counter%2 ===0){
@@ -41,13 +40,6 @@ const Desarrollo = () => {
        // }
         //console.log(counter);
      // }
-      const [esMovil, setEsMovil] = useState(false);
-
-      useEffect(() => {
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-        const esMovilDetectado = /android|iphone|ipad|ipod|windows phone/i.test(userAgent);
-        setEsMovil(esMovilDetectado);
-      }, []);
     
 
     return (
@@ -68,24 +60,33 @@ const Desarrollo = () => {
   </button>
 )}
             <div className="ar-container">
-      <model-viewer
-        id="modelo"
-        src="final_design.glb"
-        ar
-        ar-modes="scene-viewer webxr quick-look"
-        auto-rotate
-        camera-controls
-        environment-image="neutral"
-        shadow-intensity="1"
-        ar-scale="auto"
-        exposure="1.2"
-        camera-orbit={!esMovil ? "90deg 0deg 0m" : "90deg 0deg auto"}
-        class="model-viewer"
-      ></model-viewer>
-      
-     
-
-    </div>
+              {isLoading && (
+                <LoadingSpinner 
+                  size="large" 
+                  text="Cargando modelo 3D..." 
+                />
+              )}
+              {isError && (
+                <div className="error-message">
+                  <p>Error al cargar el modelo 3D. Por favor, recarga la página.</p>
+                </div>
+              )}
+              <model-viewer
+                id="modelo"
+                src="final_design.glb"
+                ar
+                ar-modes="scene-viewer webxr quick-look"
+                auto-rotate
+                camera-controls
+                environment-image="neutral"
+                shadow-intensity="1"
+                ar-scale="auto"
+                exposure="1.2"
+                camera-orbit={!esMovil ? "90deg 0deg 0m" : "90deg 0deg auto"}
+                class="model-viewer"
+                style={{ display: isLoading || isError ? 'none' : 'block' }}
+              ></model-viewer>
+            </div>
             
             </header>
             <main>

@@ -1,8 +1,12 @@
 
   
 header img{
-    width: 100vw;
-    transform: rotate(-8deg);}
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    object-fit: contain;
+    transform: rotate(-8deg);
+}
 
 .nosotros-section,
 .why-huitzillin,
@@ -12,14 +16,13 @@ header{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     background-repeat: no-repeat;
-    background-size: cover; /* o contain, según lo que necesites */
+    background-size: cover;
     background-position: center;
     background-color: #000000;
     background-image: url("../assets/back_green.png");
-    background-repeat: no-repeat;
     overflow-x: hidden;
     overflow-y: hidden;
 }
@@ -54,8 +57,10 @@ header{
   position: absolute;
   top: 3rem;
   right: -5rem;
-  width: 90vw;
-  height: 90vh;
+  width: 60vw;
+  height: auto;
+  max-height: 60vh;
+  object-fit: contain;
 }
 
 .mision-vision{
@@ -73,17 +78,99 @@ header{
   font-size: 2rem;
 }
 
-/* === ESTILOS PARA ESCRITORIO === */
-@media (max-width: 480px) {
+/* === ESTILOS PARA MÓVIL === */
+@media (max-width: 768px) {
   .info{
-    max-width: 300px;
+    max-width: 280px;
+    left: 5%;
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  .info h3{
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
   }
 
+  /* Imagen principal del header */
+  header img{
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    transform: rotate(-5deg);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* Imagen del logo en why-huitzillin */
   .why-huitzillin img{
     position: absolute;
-    top: 10rem;
-    left: 0rem;
-    height: 65%;
-    width: auto;
+    top: 2rem;
+    right: -2rem;
+    width: 70vw;
+    height: auto;
+    max-height: 45vh;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* Mejorar las secciones para móvil */
+  .nosotros-section,
+  .why-huitzillin,
+  .mision-vision,
+  header{
+    padding: 1rem;
+    background-size: cover;
+    background-position: center center;
+  }
+}
+
+@media (max-width: 480px) {
+  .info{
+    max-width: 250px;
+    left: 3%;
+    bottom: 2rem;
+    z-index: 10;
+  }
+  
+  .info h3{
+    font-size: 1.3rem;
+    margin-bottom: 0.6rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  /* Imagen principal más pequeña */
+  header img{
+    width: 100%;
+    max-width: 100vw;
+    height: auto;
+    max-height: 40vh;
+    object-fit: contain;
+    transform: rotate(-3deg);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* Logo más pequeño y mejor posicionado */
+  .why-huitzillin img{
+    position: absolute;
+    top: 1rem;
+    right: -1rem;
+    width: 60vw;
+    height: auto;
+    max-height: 35vh;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+  }
+
+  /* Padding reducido para pantallas pequeñas */
+  .nosotros-section,
+  .why-huitzillin,
+  .mision-vision,
+  header{
+    padding: 0.5rem;
+    background-size: cover;
+    background-position: center center;
   }
 }

@@ -1,0 +1,22 @@
+{
+  "name": "Huitzillin V1 - Aeronave VTOL",
+  "short_name": "Huitzillin",
+  "description": "Aeronave VTOL de alto rendimiento desarrollada por estudiantes del IPN",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#2E5E2D",
+  "theme_color": "#0D6836",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/huitzillin_logo 1.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["technology", "education", "aerospace"],
+  "lang": "es",
+  "scope": "/",
+  "prefer_related_applications": false
+}

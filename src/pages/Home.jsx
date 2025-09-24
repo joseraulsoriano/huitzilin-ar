@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import NegroHuit from "../assets/definitivomain.svg"
 import Logo from "../assets/huitzillin_logo 1.svg";
 import Footer from "../components/Footer";
+import OptimizedImage from "../components/OptimizedImage";
 
 const Home = () => {
 
@@ -11,7 +12,7 @@ const Home = () => {
         <NavBar></NavBar>
 
             <header>
-            <img src={NegroHuit} alt="" />
+            <OptimizedImage src={NegroHuit} alt="Huitzillin V1 - Aeronave VTOL No Tripulada" loading="eager" />
             <div className="info">
                 <h3>HUITZILLIN V1</h3>
                 <a href="/huitzillin">Conócelo ahora</a>
@@ -25,7 +26,7 @@ const Home = () => {
                     </div>
                 </section>
                 <section className="why-huitzillin">
-                    <img src={Logo} alt="" />
+                    <OptimizedImage src={Logo} alt="Logo de Huitzillin - Colibrí" />
                     <div className="info">
                         <h3>Descubre el por qué de Huitzillin</h3>
                         <a href="/identidad">Nuestra Identidad</a>
